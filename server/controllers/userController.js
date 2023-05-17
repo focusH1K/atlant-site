@@ -239,10 +239,6 @@ class UserController {
                 throw new Error('Пользователь не найден')
             }
 
-            if (newUsername === user.username) {
-                throw new Error(`Ваш никнейм уже ${user.username}`)
-            }
-
             const existingUser = await model.User.findOne({ where: { username: newUsername } })
             if (existingUser) {
                 throw new Error(`Никнейм ${newUsername} уже занят`)

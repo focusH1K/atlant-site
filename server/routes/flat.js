@@ -10,6 +10,5 @@ router.put('/admin/update/:id', adminMiddleware('admin'), FlatController.update)
 router.post('/admin/create', adminMiddleware('admin'), FlatController.create)
 router.get('/getall', FlatController.getAll)
 router.get('/getone/:id', FlatController.getOne)
-router.delete('/admin/delete/:id', adminMiddleware('admin'), FlatController.delete)
 
 module.exports = router

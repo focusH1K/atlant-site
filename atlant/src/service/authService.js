@@ -37,8 +37,8 @@ export default class AuthService {
         return $api.get(`/user/reset/${reset_link}`);
     }
 
-    static async changePassword(userId, password, newPassword) {
-        return $api.post(`/user/refreshPass`, { userId, password, newPassword })
+    static async changePassword(id, password, newPassword) {
+        return $api.put(`/user/refreshPass`, { id, password, newPassword })
     }
 
     static async getUserById(id) {

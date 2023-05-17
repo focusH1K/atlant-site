@@ -125,9 +125,9 @@ export default class Store {
         }
     }
 
-    async changePassword(userId, password, newPassword) {
+    async changePassword(id, password, newPassword) {
         try {
-            const response = await AuthService.changePassword(userId, password, newPassword)
+            const response = await AuthService.changePassword(id, password, newPassword)
             showSuccessToast('Пароль успешно изменен')
             return response.data
         } catch (e) {
@@ -141,7 +141,6 @@ export default class Store {
         this.setAuth(true)
         this.setUser(response.data.user)
         return response.data;
-
     }
 
     async deleteUser(id) {

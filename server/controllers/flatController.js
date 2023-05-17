@@ -86,15 +86,6 @@ class FlatController {
     const flat = await model.Flat.findByPk(id)
     return res.json(flat)
   }
-
-
-
-  async delete(req, res) {
-    const { id } = req.params
-    const flat = await model.Flat.findByPk(id)
-    await flat.destroy()
-    return res.json(flat)
-  }
 }
 
 module.exports = new FlatController()

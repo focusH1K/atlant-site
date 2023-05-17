@@ -40,5 +40,6 @@ router.get('/user/reset/:reset_link', userController.getResetPasswordPage)
 router.delete('/user/delete/:id', userController.deleteUser)
 router.put('/user/refreshusername/:id', userController.refreshUsername)
 router.post('/user/resetUsername', userController.resetUsername)
+router.put('/user/refreshPass', userController.refreshPassword)
 
 module.exports = router

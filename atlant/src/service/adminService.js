@@ -16,11 +16,7 @@ export default class AdminService {
           data: data
         });
       }
-
-    static deleteFlat(id) {
-        return $api.delete(`/flat/admin/delete/${id}`)
-    }
-
+      
     static updateFlat(id, data) {
         return $api.put(`/flat/admin/update/${id}`, data);
       }

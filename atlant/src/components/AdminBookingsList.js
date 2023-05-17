@@ -9,7 +9,7 @@ const AdminBookingsList = () => {
   useEffect(() => {
     bookingStore.getAllBookings()
   }, [bookingStore])
-
+  
   return (
     <MDBContainer>
     <MDBRow className='g-4'>
