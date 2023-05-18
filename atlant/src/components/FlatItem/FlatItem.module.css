@@ -4,8 +4,6 @@
 }
 
 .button-size {
-  font-size: 1rem;
-  width: 10rem;
-  height: 2.2rem;
+  background-color: midnightblue;
   margin-left: 10px;
 }

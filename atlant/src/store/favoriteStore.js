@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx"
 import AuthService from "../service/authService"
 import UserService from "../service/userService"
-import { showErrorToast, showInfoToast, showWarningToast } from "../notifications/Toast"
+import { showErrorToast, showInfoToast } from "../notifications/Toast"
 
 export default class FavoriteStore {
   favorites = []
@@ -47,7 +47,7 @@ export default class FavoriteStore {
   async clearFavorite(userId) {
     try {
       await AuthService.clearFavorites(userId)
-      showWarningToast('Раздел очищен')
+      showInfoToast('Раздел очищен')
       this.favorites = []
     } catch(e) {
       showErrorToast(e.response.data.message)

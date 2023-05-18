@@ -47,14 +47,14 @@ class UserService {
     async login(username, password) {
         const user = await model.User.findOne({where: {username}})
         if (!user) {
-            throw ApiError.BadRequest('Пользователь с такми никнеймом не найден')
+            throw ApiError.BadRequest('Неверный логин или пароль')
         }
         if (user.is_activated === false) {
             throw ApiError.BadRequest('Пользователь не активирован')
         } 
         const isPassEquals = await bcrypt.compare(password, user.password)
         if (!isPassEquals) {
-            throw ApiError.BadRequest('Неверный пароль')
+            throw ApiError.BadRequest('Неверный логин или пароль')
         }
         const userDto = new UserDto(user)
         const tokens = tokenService.generateTokens({...userDto})

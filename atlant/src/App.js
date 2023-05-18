@@ -4,6 +4,9 @@ import { observer } from 'mobx-react-lite';
 import AppRouter from "./route/AppRouter"
 import { MDBSpinner } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
+import { Layout } from "antd";
+
+const { Footer } = Layout
 
 
 const App = () => {

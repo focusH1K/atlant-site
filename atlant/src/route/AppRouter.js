@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter as Router } from 'react-router-dom'
 import { Context } from '../index'
 import React, { useContext } from 'react' 
+import { Layout } from 'antd'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import Home from '../pages/Home'
@@ -14,6 +15,8 @@ import ResetPassword from '../pages/ResetPassword'
 import ResetPasswordPage from '../pages/ResetPasswordPage'
 import Empty from '../pages/Empty.js'
 import ResetUsername from '../pages/ResetUsername'
+
+const { Footer } = Layout
 
 const AppRouter = () => {
     const { store } = useContext(Context)
@@ -46,6 +49,9 @@ const AppRouter = () => {
                 <Route path='/flats' element={<Flats />} />
                 <Route path='/flats/:id' element={<FlatItem />} />
             </Routes>
+            <Layout>
+                <Footer style={{ textAlign: 'center', backgroundColor: 'midnightblue', color: 'white' }}>©2023 ЖК Атлант. Все права защищены</Footer>
+            </Layout>
         </Router>
     )
 }

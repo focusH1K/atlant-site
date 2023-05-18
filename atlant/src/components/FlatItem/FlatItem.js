@@ -141,7 +141,8 @@ const FlatItem = () => {
                         </Col>
                     </Row>
                 </Card>
-                <div
+                {store.isAuth ? (
+                    <div
                     style={{
                         width: '100%',
                         display: 'flex',
@@ -170,15 +171,24 @@ const FlatItem = () => {
                             >
                                 <strong>Удалить</strong>
                             </Button>
-                            <Button className={styles['button-size']} onClick={toggleShowPurchase} type="primary">
-                            <strong>Купить</strong>
-                            </Button>
                         </div>
                     )}
-                    {flatStore.flat.status === 'available' && (
+                    {flatStore.flat.status === 'available' ? (
+                        <>
                         <Button className={styles['button-size']} onClick={toggleShowBooking} type="primary">
                             <strong>Забронировать</strong>
                         </Button>
+                        <Button className={styles['button-size']} onClick={toggleShowPurchase} type="primary">
+                        <strong>Купить</strong>
+                        </Button>
+                        </>
+                    ) : flatStore.flat.status === 'reserved' ? (
+                        <Button className={styles['button-size']} onClick={toggleShowPurchase} type="primary">
+                            <strong>Купить</strong>
+                        </Button>
+                    
+                    ) : (
+                        null
                     )}
                     {isFavorite ? (
                         <Button className={styles['button-size']} onClick={handleDeleteFromFavorite} type="primary" danger>
@@ -190,6 +200,9 @@ const FlatItem = () => {
                         </Button>
                     )}
                 </div>
+                ) : (
+                    null
+                )}
             </div>
             <Modal
                 title="Редактировать квартиру"
