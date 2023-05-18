@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "./index";
 import { observer } from 'mobx-react-lite';
-import AppRouter from "./components/AppRouter";
+import AppRouter from "./route/AppRouter"
 import { MDBSpinner } from "mdb-react-ui-kit";
 import { ToastContainer } from "react-toastify";
 

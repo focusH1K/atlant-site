@@ -18,11 +18,7 @@ class PurchaseController {
         }
 
         if (flat.status === 'not available') {
-            return res.json({message: 'Квартира уже продана' });
-        }
-
-        if (flat.status === 'reserved') {
-            return res.json({ message : `Квартира забронирована и будет куплена после окончания бронирования` });
+            throw new Error('Квартира уже продана')
         }
 
         const purchase_date = new Date()

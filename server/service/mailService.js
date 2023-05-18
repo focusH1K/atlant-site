@@ -19,7 +19,7 @@ class MailService {
         await this.transporter.sendMail({
             from: config.smtp_user,
             to,
-            subject: 'Активация акканута на ' + config.api_url,
+            subject: 'Активация акканута на сайте ЖК Атлант',
             text: '',
             html:
                 `
@@ -55,12 +55,12 @@ class MailService {
         await this.transporter.sendMail({
             from: config.smtp_user,
             to,
-            subject: 'Сброс пароля на ' + config.api_url,
+            subject: 'Сброс пароля на сайте ЖК Атлант',
             text: '',
             html: `
                 <div>
-                    <h1>Сброс пароля на ${config.api_url}</h1>
-                    <p>Вы получили это письмо, потому что запросили сброс пароля на ${config.api_url}. Если вы не запрашивали сброс пароля, обратитесь в подержку нашего сайта</p>
+                    <h1>Сброс пароля на сайте ЖК Атлант</h1>
+                    <p>Вы получили это письмо, потому что запросили сброс пароля на сайте ЖК Атлант. Если вы не запрашивали сброс пароля, обратитесь в подержку нашего сайта</p>
                     <p>Перед тем, как ввести новый пароль, пожалуйста, сбросьте старый пароль, перейдя по ссылке ниже:</p>
                     <a href="${link}">${link}</a>
                 </div>
@@ -81,7 +81,7 @@ class MailService {
                     <p><b>${flat.name} ${flat.area} кв.м</b></p>
                     <p>Цена: ${flat.price} руб.</p>
                     <p>Дата отправки заявкм: ${purchase_date}</p>
-                    <p>В течение дня с вами свяжется наш менеджер для уточнения всех деталей</p>
+                    <p>В течение дня с Вами свяжется наш менеджер для уточнения всех деталей</p>
                 </div>
             `
         })
@@ -91,7 +91,7 @@ class MailService {
         await this.transporter.sendMail({
             from: config.smtp_user,
             to,
-            subject: 'Никнейм пользователя на сайте "ЖК Атлант"',
+            subject: 'Никнейм пользователя на сайте ЖК Атлант',
             text: '',
             html: `
                 <div>

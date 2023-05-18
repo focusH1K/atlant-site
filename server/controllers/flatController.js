@@ -7,19 +7,24 @@ const fs = require('fs')
 class FlatController {
   async create(req, res, next) {
     try {
-      const { name, description, price, area, category_id } = req.body
-      const { image } = req.files
-      let fileName = uuid.v4() + '.jpg'
-      let filePath = path.resolve(__dirname, '..', 'static', fileName)
-      image.mv(filePath)
+        const { name, description, price, area, category_id } = req.body;
+        const { image } = req.files;
 
-      const flat = await model.Flat.create({ name, description, price, area, category_id, image: fileName })
+        if (!image) {
+            throw new Error("Фото обязательно");
+        }
 
-      return res.json(flat)
+        let fileName = uuid.v4() + '.jpg';
+        let filePath = path.resolve(__dirname, '..', 'static', fileName);
+        image.mv(filePath);
+
+        const flat = await model.Flat.create({ name, description, price, area, category_id, image: fileName });
+
+        return res.json(flat);
     } catch (e) {
-      next(ApiError.BadRequest(e.message))
+        next(ApiError.BadRequest(e.message));
     }
-  }
+}
 
   async update(req, res, next) {
     try {
@@ -35,7 +40,6 @@ class FlatController {
         let filePath = path.resolve(__dirname, '..', 'static', fileName);
         image.mv(filePath);
         if (flat.image) {
-          // Delete the existing image file
           fs.unlinkSync(path.resolve(__dirname, '..', 'static', flat.image));
         }
       }

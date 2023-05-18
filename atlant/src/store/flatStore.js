@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx'
 import UserService from '../service/userService'
 import AdminService from '../service/adminService'
-import { showErrorToast, showSuccessToast } from '../components/Toast'
+import { showErrorToast, showSuccessToast } from '../notifications/Toast'
 
 export default class FlatStore {
   flats = []
@@ -14,9 +14,9 @@ export default class FlatStore {
     makeAutoObservable(this)
   }
 
-  async createFlat(name, price, description, area, category_id, image, data) {
+  async createFlat(data) {
     try {
-      const flat = await AdminService.createFlat(name, price, description, area, category_id, image, data)
+      const flat = await AdminService.createFlat(data)
       showSuccessToast('Квартира успешно добавлена!')
       this.flats.push(flat)
     } catch(e) {
@@ -27,6 +27,7 @@ export default class FlatStore {
   async fetchFlats(category_id) {
     try {
       const response = await UserService.fetchFlats(category_id);
+      console.log(response.data)
       this.flats = response.data;
       this.updateCounts();
     } catch (e) {

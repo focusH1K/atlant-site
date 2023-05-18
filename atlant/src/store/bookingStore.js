@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import AuthService from "../service/authService";
 import UserService from "../service/userService";
 import AdminService from "../service/adminService";
-import { showErrorToast, showSuccessToast, showWarningToast } from "../components/Toast";
+import { showErrorToast, showSuccessToast, showWarningToast } from "../notifications/Toast";
 
 export default class BookingStore {
     bookings = []

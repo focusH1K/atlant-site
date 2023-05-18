@@ -1,0 +1,11 @@
+.custom-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+    border-radius: 8px;
+}
+
+.button-size {
+  font-size: 1rem;
+  width: 10rem;
+  height: 2.2rem;
+  margin-left: 10px;
+}

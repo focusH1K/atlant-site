@@ -9,5 +9,6 @@ router.delete('/deleteFlat/user/:userId/flat/:flat_id', FavoriteFlatController.d
 router.post('/create', FavoriteFlatController.addToFavorite)
 router.delete('/clear/:userId', FavoriteFlatController.clearFavorite)
 router.get('/getAllFlats/:userId', FavoriteFlatController.getFavoriteFlats)
+router.get('/getstatus/user/:userId/flat/:flat_id', FavoriteFlatController.checkFavoriteStatus)
 
 module.exports = router

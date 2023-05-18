@@ -29,7 +29,7 @@ const CategoryBar = () => {
     const [verticalActive, setVerticalActive] = useState('');
     const [name, setName] = useState('')
     const [price, setPrice] = useState('')
-    const [image, setImage] = useState(null)
+    const [image, setImage] = useState('')
     const [description, setDescription] = useState('')
     const [area, setArea] = useState('')
     const [modalOpen, setModalOpen] = useState(false)
@@ -54,24 +54,19 @@ const CategoryBar = () => {
     }, []);
 
     const handleCreate = async () => {
-        try {
             const data = new FormData();
             data.append('name', name);
             data.append('description', description);
-            data.append('area', area);
             data.append('price', price);
+            data.append('area', area);
             if (selectedCategoryId) {
                 data.append('category_id', selectedCategoryId);
             }
-            if (image && image.length > 0) {
-                data.append('image', image);
-            }
-            await flatStore.createFlat(name, price, description, area, image, data);
+            data.append('image', image, image.name);
+            await flatStore.createFlat(data);
+            await flatStore.fetchFlats()
             setModalOpen(false);
-            console.log(name, description, area, price, selectedCategoryId, image)
-        } catch (error) {
-            console.log(error);
-        }
+            console.log(name, description, area, price, selectedCategoryId, image);
     };
 
     const handleVerticalClick = async (category_id) => {
@@ -159,7 +154,7 @@ const CategoryBar = () => {
                                     label=""
                                     type="file"
                                     accept=".jpg"
-                                    onChange={(e) => setImage(e.target.files)}
+                                    onChange={(e) => setImage(e.target.files[0])}
                                     className="mt-3"
                                 />
 

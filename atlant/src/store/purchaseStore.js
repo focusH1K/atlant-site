@@ -2,7 +2,7 @@ import { makeAutoObservable } from "mobx";
 import AuthService from "../service/authService";
 import UserService from "../service/userService";
 import AdminService from "../service/adminService";
-import { showErrorToast, showSuccessToast } from "../components/Toast";
+import { showErrorToast, showSuccessToast } from "../notifications/Toast";
 
 export default class PurchaseStore {
     purchases = []
@@ -16,10 +16,8 @@ export default class PurchaseStore {
             const purchase = await AuthService.createPurchase(userId, flatId, purchase_date, first_name, last_name)
             showSuccessToast('Заявка успешно отправлена! Проверьте свою эл.почту')
             this.purchases.push(purchase)
-            return true
         } catch (e) {
             showErrorToast(e.response.data.message)
-            return false
         }
     }
 

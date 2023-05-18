@@ -64,11 +64,11 @@ const NavBar = () => {
 
                     {store.isAuth ? (
                         <div className='d-flex align-items-center ms-2 ms-lg-3'>
-                            <MDBNavbarLink href='/favorite'>
-                                <FaHeart className='fa-2x text-danger me-2' />
-                            </MDBNavbarLink>
+                            <MDBBtn href='/favorite' color='link' className='px-3 me-2 text-dark'>
+                                Избранное
+                            </MDBBtn>
                             <MDBBtn href='/profile' color='link' className='px-3 me-2 text-dark'>
-                                Профиль
+                                <strong>Профиль</strong>
                             </MDBBtn>
                             <MDBBtn onClick={handleLogout} color='danger'>
                                 Выйти

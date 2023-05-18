@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MDBListGroup, MDBListGroupItem, MDBBtn } from 'mdb-react-ui-kit';
 import { Context } from '../index';
 import AuthService from '../service/authService';
-import { showErrorToast, showSuccessToast } from './Toast';
+import { showErrorToast, showSuccessToast } from '../notifications/Toast';
 
 const UserList = () => {
     const [users, setUsers] = useState([])

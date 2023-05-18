@@ -28,7 +28,7 @@ const ResetPassword = () => {
                 <MDBRow className="justify-content-center">
                     <MDBCol col="4" md="6">
                         <div className="d-flex justify-content-between align-items-center mb-4">
-                            <h2 className="fw-bold mb-0">Восстановление пароля</h2>
+                            <h2 className="fw-bold mb-0">Восстановление аккаунта</h2>
                             <MDBBtn className="text-dark" color="link" onClick={handleBack}>
                                 Назад
                             </MDBBtn>

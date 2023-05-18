@@ -102,6 +102,22 @@ class FavoriteFlatController {
         }
     }
 
+    async checkFavoriteStatus(req, res, next) {
+        try {
+            const { userId, flat_id } = req.params;
+            const favorite = await model.FavoriteFlat.findOne({
+                where: {
+                    userId: userId,
+                    flat_id: flat_id
+                }
+            });
+            const isFavorite = !!favorite;
+            res.json(isFavorite);
+        } catch (e) {
+            next(ApiError.BadRequest(e.message))
+        }
+    };
+
 }
 
 module.exports = new FavoriteFlatController()

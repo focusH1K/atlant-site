@@ -23,7 +23,7 @@ import AuthService from '../service/authService';
 import { observer } from 'mobx-react-lite'
 import { IMG_URL } from '../http/index';
 import { useNavigate } from 'react-router-dom';
-import { showErrorToast, showSuccessToast } from '../components/Toast';
+import { showErrorToast, showSuccessToast } from '../notifications/Toast';
 
 const Profile = () => {
     const [activeTab, setActiveTab] = useState('Бронирования');
@@ -124,7 +124,7 @@ const Profile = () => {
             <MDBRow className="justify-content-center align-items-center h-100">
                 <MDBCol lg="9" xl="7">
                     <MDBCard style={{ border: '1px solid black' }}>
-                        <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
+                        <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#363434', height: '200px' }}>
                             <div className="ms-4 mt-5 d-flex flex-column">
                                 {editingUsername ? (
                                     <>
@@ -153,7 +153,6 @@ const Profile = () => {
                                         <MDBCardText>Никнейм: {store.user.username}</MDBCardText>
                                     )}
                                     <MDBCardText>Почта: {store.user.email}</MDBCardText>
-                                    <MDBCardText>Роль: {store.user.role}</MDBCardText>
                             </div>
                             <div className="text-end mt-5 d-flex flex-column">
                                     <MDBBtn onClick={toggleDeleteModal} color="danger" style={{ overflow: 'visible' }}>
@@ -308,10 +307,10 @@ const Profile = () => {
                             />
                         </MDBModalBody>
                         <MDBModalFooter>
-                            <MDBBtn color="light" onClick={togglePasswordModal}>
+                            <MDBBtn color="danger" onClick={togglePasswordModal}>
                                 Отмена
                             </MDBBtn>
-                            <MDBBtn color="primary" onClick={handleSavePassword}>
+                            <MDBBtn color="light" onClick={handleSavePassword}>
                                 Сохранить
                             </MDBBtn>
                         </MDBModalFooter>

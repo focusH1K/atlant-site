@@ -5,18 +5,13 @@ export default class AdminService {
         return $api.get('/admin/users')
     }
 
-    static createFlat(name, price, description, area, category_id, image, data) {
-        return $api.post('/flat/admin/create', {
-          name: name,
-          price: price,
-          description: description,
-          area: area,
-          category_id: category_id,
-          image: image,
-          data: data
-        });
-      }
-      
+    static createFlat(data) {
+      const headers = {
+        'Content-Type': 'multipart/form-data'
+      };
+      return $api.post('/flat/admin/create', data, { headers });
+    }
+    
     static updateFlat(id, data) {
         return $api.put(`/flat/admin/update/${id}`, data);
       }

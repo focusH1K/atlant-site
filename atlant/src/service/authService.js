@@ -25,6 +25,10 @@ export default class AuthService {
         return $api.delete(`/favoriteFlat/deleteFlat/user/${userId}/flat/${flat_id}`)
     }
 
+    static async clearFavorites(userId) {
+        return $api.delete(`/favoriteFlat/clear/${userId}`)
+    }
+
     static async requestPasswordReset(email) {
         return $api.post('/user/reset/request', { email })
     }
@@ -75,6 +79,10 @@ export default class AuthService {
 
     static async refreshUsername(id, username) {
         return $api.put(`/user/refreshusername/${id}`, { newUsername: username })
+    }
+
+    static async getStatusFavorite(userId, flat_id) {
+        return $api.get(`/favoriteFlat/getstatus/user/${userId}/flat/${flat_id}`)
     }
 
 }

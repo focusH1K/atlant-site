@@ -3,7 +3,7 @@ import axios from 'axios'
 import AuthService from "../service/authService";
 import { API_URL } from "../http/index";
 import jwtDecode from 'jwt-decode'
-import { showErrorToast, showInfoToast, showSuccessToast } from '../components/Toast';
+import { showErrorToast, showInfoToast, showSuccessToast } from '../notifications/Toast';
 
 
 

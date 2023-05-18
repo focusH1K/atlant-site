@@ -10,7 +10,7 @@ const Signup = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string()
-      .matches(/^[a-zA-Z][a-zA-Z0-9]*$/, 'Никнейм должен начинаться с латинской буквы')
+      .matches(/^[a-zA-Z0-9_]+$/, 'Никнейм должен содержать только латинские буквы, цифры и символ подчеркивания')
       .min(5, 'Никнейм должен содержать не менее 5 символов')
       .required('Введите никнейм'),
     email: Yup.string()
