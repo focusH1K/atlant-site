@@ -27,6 +27,7 @@ export default class FavoriteStore {
       for (let i = 0; i < this.favorites.length; i++) {
         const favoriteFlat = this.favorites[i];
         const flat = await UserService.fetchFlat(favoriteFlat.flat_id);
+        console.log(flat.data)
         favoriteFlat.flat = flat.data;
       }
 

@@ -141,7 +141,7 @@ const Profile = () => {
                                     </MDBBtn>
                                 )}
                                 {!editingPassword ? (
-                                    <MDBBtn onClick={togglePasswordModal} className="mt-3"  color="primary" style={{ overflow: 'visible' }}>
+                                    <MDBBtn onClick={togglePasswordModal} className="mt-3"  color="primary" style={{ overflow: 'visible', background: 'rgba(25, 25, 112, 0.8' }}>
                                         <strong>Сменить пароль</strong>
                                     </MDBBtn>
                                 ) : null}

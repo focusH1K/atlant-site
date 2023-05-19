@@ -26,7 +26,7 @@ const FavoriteList = () => {
   return (
     <>
       <div className='d-flex'>
-        {favoriteStore.favorites && favoriteStore.favorites.length ? (
+        {favoriteStore.favorites.length ? (
           favoriteStore.favorites.map((favorite) => (
             <Card
               key={favorite.id}

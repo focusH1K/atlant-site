@@ -93,7 +93,7 @@ const ResetPasswordPage = () => {
                                 type='password'
                                 size='lg'
                             />
-                            <MDBBtn color='dark' className='mb-4 w-100' size='lg' type='submit'>
+                            <MDBBtn color='dark' className='mb-4 w-100' size='lg' type='submit' style={{ background: 'rgba(25, 25, 112, 0.8)'}}>
                                 Восстановить
                             </MDBBtn>
                         </form>
