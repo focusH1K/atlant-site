@@ -15,6 +15,8 @@ import ResetPassword from '../pages/ResetPassword';
 import ResetPasswordPage from '../pages/ResetPasswordPage';
 import Empty from '../pages/Empty.js';
 import ResetUsername from '../pages/ResetUsername';
+import Advantages from '../pages/Advantages';
+import Contacts from  '../pages/Contacts'
 
 const { Footer } = Layout;
 
@@ -24,8 +26,9 @@ const AppRouter = () => {
   const isAdminPage = window.location.pathname.includes('/admin');
   const isAuthPage = window.location.pathname.includes('/signup') || window.location.pathname.includes('/login');
   const isProfilePage = window.location.pathname.includes('/profile')
+  const isFavoritePage = window.location.pathname.includes('/favorite')
 
-  const shouldDisplayFooter = !(isAdminPage || isAuthPage || isProfilePage);
+  const shouldDisplayFooter = !(isAdminPage || isAuthPage || isProfilePage || isFavoritePage);
 
   return (
     <Router>
@@ -50,6 +53,8 @@ const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/flats" element={<Flats />} />
         <Route path="/flats/:id" element={<FlatItem />} />
+        <Route path="/advantages" element={<Advantages />} />
+        <Route path="/contacts" element={<Contacts />} />
       </Routes>
       {shouldDisplayFooter && (
         <Layout>

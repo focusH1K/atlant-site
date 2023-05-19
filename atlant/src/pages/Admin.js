@@ -13,7 +13,10 @@ const Admin = () => {
     }
 
     return (
+        <>
+        <h2 className="mt-3 ms-3">Панель администратора</h2>
         <AdminSidebar />
+        </>
     )
     
 }

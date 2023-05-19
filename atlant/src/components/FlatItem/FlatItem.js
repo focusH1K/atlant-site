@@ -135,8 +135,8 @@ const FlatItem = () => {
                         <Col xs={24} sm={12}>
                             <div>
                                 <h2>{flatStore.flat.name} {flatStore.flat.area} кв.м</h2>
-                                <p>{flatStore.flat.description}</p>
-                                <p>Цена: {flatStore.flat.price} руб.</p>
+                                <p style={{ fontSize: '24px'}}>{flatStore.flat.description}</p>
+                                <p className='fw-bold' style={{ fontSize: '20px'}}>Цена: {flatStore.flat.price} руб.</p>
                             </div>
                         </Col>
                     </Row>

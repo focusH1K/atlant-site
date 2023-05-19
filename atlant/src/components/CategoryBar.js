@@ -105,7 +105,7 @@ const CategoryBar = () => {
                         ))}
                         <MDBTabsItem>
                             {store.isAdmin && (
-                                <MDBBtn size='md' rounded color='primary' className='me-2 mt-2' onClick={toggleShow}>
+                                <MDBBtn size='md' rounded style={{ background: 'rgba(25, 25, 112, 0.8)'}} className='me-2 mt-2' onClick={toggleShow}>
                                     Добавить квартиру
                                 </MDBBtn>
                             )}
@@ -160,10 +160,7 @@ const CategoryBar = () => {
 
                             </MDBModalBody>
                             <MDBModalFooter>
-                                <MDBBtn color='danger' onClick={toggleShow}>
-                                    Закрыть
-                                </MDBBtn>
-                                <MDBBtn color='light' onClick={handleCreate}>Добавить</MDBBtn>
+                                <MDBBtn style={{ background: 'rgba(25, 25, 112, 0.8)'}} onClick={handleCreate}>Добавить</MDBBtn>
                             </MDBModalFooter>
                         </MDBModalContent>
                     </MDBModalDialog>

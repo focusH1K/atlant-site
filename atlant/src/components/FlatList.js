@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
-import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import { Row, Col, Empty } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { IMG_URL } from '../http';
 
@@ -14,23 +14,26 @@ const FlatList = () => {
   }, [flatStore]);
 
   return (
-    <MDBRow className='g-4'>
-      {flatStore.flats.length ? (
-        flatStore.flats.map((item) => (
-          <MDBCol key={item.id} lg='4' onClick={() => navigate(`/flats/${item.id}`)}>
-            <div>
-              <h3>{item.name}</h3>
-              <h5>Площадь: {item.area} кв. м</h5>
-              {item.image && <img style={{ width: 300, height: 300 }} src={IMG_URL + item.image} alt={item.name} />}
-              <p>{item.description}</p>
-              <p>{item.price}</p>
-            </div>
-          </MDBCol>
-        ))
-      ) : (
-        <p className='mb-3'>По вашему запросу ничего не найдено</p>
-      )}
-    </MDBRow>
+    <div className='container' style={{ width: '100%' }}>
+      <Row gutter={[16, 16]}>
+        {flatStore.flats.length ? (
+          flatStore.flats.map((item) => (
+            <Col key={item.id} xs={24} sm={12} md={8} lg={8} onClick={() => navigate(`/flats/${item.id}`)}>
+              <div style={{ border: '1px solid #ccc', borderRadius: '4px', padding: '10px', cursor: 'pointer' }}>
+                <h4>{item.name}</h4>
+                <h5>Площадь: {item.area} кв. м</h5>
+                {item.image && <img style={{ width: '100%', height: 'auto', marginBottom: '10px' }} src={IMG_URL + item.image} alt={item.name} />}
+                <p className='fw-bold' style={{ fontSize: '20px'}}>{item.price} руб.</p>
+              </div>
+            </Col>
+          ))
+        ) : (
+          <Col span={24}>
+            <Empty description='По вашему запросу ничего не найдено' />
+          </Col>
+        )}
+      </Row>
+    </div>
   );
 };
 
