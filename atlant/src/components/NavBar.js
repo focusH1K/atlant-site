@@ -1,93 +1,101 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Context } from '../index';
 import { observer } from 'mobx-react-lite';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import {
-    MDBContainer,
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBIcon,
-    MDBNavbarNav,
-    MDBNavbarItem,
-    MDBNavbarLink,
-    MDBBtn,
-    MDBCollapse
-} from 'mdb-react-ui-kit';
-import { useNavigate } from 'react-router-dom';
-import { FaHeart } from 'react-icons/fa';
+import 'antd/es/app/style/index';
+import { Layout, Menu, Button } from 'antd';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const { Header } = Layout;
+const { Item } = Menu;
 
 const NavBar = () => {
-    const { store } = useContext(Context)
-    const navigate = useNavigate()
+  const { store } = useContext(Context);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [currentLocation, setCurrentLocation] = useState('/');
 
-    const handleLogout = () => {
-        store.logout();
-        if (store.isAdmin) {
-            store.setAdmin(false);
-        } 
-        navigate('/')
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location.pathname]);
+
+  const handleLogout = () => {
+    store.logout();
+    if (store.isAdmin) {
+      store.setAdmin(false);
     }
+    navigate('/');
+  };
 
-    return (
-        <MDBNavbar expand='lg' light className="bg-white border-bottom">
-            <MDBContainer fluid>
-                <MDBNavbarBrand className='ms-1 ms-lg-3 d-flex align-items-center' href='/'>
-                    <MDBIcon icon='flask' className='text-dark me-2' />
-                    <small className='fw-bold text-dark'>ЖК Атлант</small>
-                </MDBNavbarBrand>
+  return (
+    <Header className="bg-white border-bottom">
+      <Menu
+        theme="light"
+        mode="horizontal"
+        defaultSelectedKeys={['1']}
+        className="ms-1 ms-lg-3"
+        style={{ justifyContent: 'space-between' }}
+        selectedKeys={[currentLocation]}
+      >
+        <Item key="1" className="text-dark" items={['1']}>
+          <strong>
+            <a href="/" className="fw-bold text-dark">
+              ЖК Атлант
+            </a>
+          </strong>
+        </Item>
+        <Item key="2" className="text-dark" items={['2']}>
+          <a href="/flats">Квартиры</a>
+        </Item>
+        <Item key="3" className="text-dark" items={['3']}>
+          <a href="/advantages">Обустройство ЖК</a>
+        </Item>
+        <Item key="4" className="text-dark" items={['4']}>
+          <a href="/contacts">Контакты</a>
+        </Item>
+        {store.isAdmin && (
+          <Item key="5" className="text-dark" items={['5']}>
+            <a href="/admin">Панель администратора</a>
+          </Item>
+        )}
+        <div className="d-flex align-items-center">
+          {store.isAuth ? (
+            <>
+              <Button
+                href="/favorite"
+                type="link"
+                className={`px-3 me-2 ${currentLocation === '/favorite' ? 'text-primary' : 'text-dark'}`}
+              >
+                Избранное
+              </Button>
+              <Button
+                href="/profile"
+                type="link"
+                className={`px-3 me-2 ${currentLocation === '/profile' ? 'text-primary' : 'text-dark'}`}
+              >
+                <strong>Профиль</strong>
+              </Button>
+              <Button onClick={handleLogout} type="primary" danger>
+                Выйти
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button
+                href="/login"
+                type="link"
+                className={`px-3 me-2 ${currentLocation === '/login' ? 'text-primary' : 'text-dark'}`}
+              >
+                Вход
+              </Button>
+              <Button href="/signup" style={{ background: 'rgba(25, 25, 112, 0.8)' }} className="text-white">
+                Регистрация
+              </Button>
+            </>
+          )}
+        </div>
+      </Menu>
+    </Header>
+  );
+};
 
-                <MDBCollapse navbar>
-                    <MDBNavbarNav className="ms-auto">
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='/flats' className="text-dark">
-                                Квартиры
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='/advantages' className="text-dark">Обустройство ЖК</MDBNavbarLink>
-                        </MDBNavbarItem>
-
-                        <MDBNavbarItem>
-                            <MDBNavbarLink href='/contacts' className="text-dark">
-                                Контакты
-                            </MDBNavbarLink>
-                        </MDBNavbarItem>
-
-                        {store.isAdmin && (
-                            <MDBNavbarItem>
-                                <MDBNavbarLink href='/admin' className="text-dark">
-                                    Панель администратора
-                                </MDBNavbarLink>
-                            </MDBNavbarItem>
-                        )}
-                    </MDBNavbarNav>
-
-                    {store.isAuth ? (
-                        <div className='d-flex align-items-center ms-2 ms-lg-3'>
-                            <MDBBtn href='/favorite' color='link' className='px-3 me-2 text-dark'>
-                                Избранное
-                            </MDBBtn>
-                            <MDBBtn href='/profile' color='link' className='px-3 me-2 text-dark'>
-                                <strong>Профиль</strong>
-                            </MDBBtn>
-                            <MDBBtn onClick={handleLogout} color='danger'>
-                                Выйти
-                            </MDBBtn>
-                        </div>
-                    ) : (
-                        <div className='d-flex align-items-center ms-2 ms-lg-3'>
-                            <MDBBtn href='/login' color='link' className='px-3 me-2 text-dark'>
-                                Вход
-                            </MDBBtn>
-                            <MDBBtn href='/signup' color='dark'>
-                                Регистрация
-                            </MDBBtn>
-                        </div>
-                    )}
-                </MDBCollapse>
-            </MDBContainer>
-        </MDBNavbar>
-    )
-}
-
-export default observer(NavBar)
+export default observer(NavBar);

@@ -161,6 +161,9 @@ const FlatItem = () => {
                                     confirm({
                                         title: 'Вы действительно хотите удалить эту квартиру?',
                                         content: 'После удаления квартира будет недоступна пользователям',
+                                        okText: 'Да',
+                                        okType: 'danger',
+                                        cancelText: 'Отмена',
                                         onOk() {
                                             flatStore.deleteFlat(flatStore.flat.id);
                                         },
@@ -212,7 +215,7 @@ const FlatItem = () => {
                     <Button key="back" onClick={toggleShow}>
                         Отмена
                     </Button>,
-                    <Button key="submit" type="primary" onClick={handleSave}>
+                    <Button key="submit" type="primary" style={{ background: 'rgba(25, 25, 112, 0.8)' }} onClick={handleSave}>
                         Сохранить
                     </Button>,
                 ]}
@@ -249,7 +252,7 @@ const FlatItem = () => {
                     <Button key="back" onClick={toggleShowBooking}>
                         Отмена
                     </Button>,
-                    <Button key="submit" type="primary" onClick={handleBooking}>
+                    <Button key="submit" type="primary" style={{ background: 'rgba(25, 25, 112, 0.8)' }} onClick={handleBooking}>
                         Забронировать
                     </Button>,
                 ]}
@@ -288,15 +291,15 @@ const FlatItem = () => {
                 </Form>
             </Modal>
             <Modal
-                title="Покупка"
+                title="Заявка на покупку"
                 open={modalPurchase}
                 onCancel={toggleShowPurchase}
                 footer={[
                     <Button key="back" onClick={toggleShowPurchase}>
                         Отмена
                     </Button>,
-                    <Button key="submit" type="primary" onClick={handlePurchase}>
-                        Купить
+                    <Button key="submit" type="primary" style={{ background: 'rgba(25, 25, 112, 0.8)' }} onClick={handlePurchase}>
+                        Оставить заявку
                     </Button>,
                 ]}
             >

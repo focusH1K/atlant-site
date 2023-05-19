@@ -27,7 +27,6 @@ export default class FlatStore {
   async fetchFlats(category_id) {
     try {
       const response = await UserService.fetchFlats(category_id);
-      console.log(response.data)
       this.flats = response.data;
       this.updateCounts();
     } catch (e) {

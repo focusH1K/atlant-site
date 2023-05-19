@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-import { MDBBtn, MDBContainer, MDBCol, MDBRow, MDBInput } from 'mdb-react-ui-kit';
+import { Button, Col, Form, Input, Row } from 'antd';
 import { Context } from '../';
 
 const Signup = () => {
-  const { store } = useContext(Context)
+  const { store } = useContext(Context);
 
   const validationSchema = Yup.object({
     username: Yup.string()
@@ -30,7 +29,7 @@ const Signup = () => {
     validationSchema,
     onSubmit: async (values) => {
       const { username, email, password } = values;
-      await store.signup(username, email, password)
+      await store.signup(username, email, password);
     },
   });
 
@@ -39,86 +38,81 @@ const Signup = () => {
   };
 
   return (
-    <MDBContainer container-fluid='true' className='p-3 my-5'>
-      <MDBRow>
-        <MDBCol col='10' md='6'>
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg" className="img-fluid" alt="Phone image" />
-        </MDBCol>
-        <MDBCol col='4' md='6'>
+    <div className="p-3 my-5">
+      <Row justify="center">
+        <Col span={14} md={6}>
           <div className="d-flex justify-content-between align-items-center mb-4">
             <h2 className="fw-bold mb-0">Регистрация</h2>
-            <MDBBtn className='text-dark' color="link" onClick={handleBack}>Назад</MDBBtn>
+            <Button type="link" className="text-dark" onClick={handleBack}>
+              Назад
+            </Button>
           </div>
-          <form onSubmit={formik.handleSubmit}>
-            {formik.touched.username && formik.errors.username && (
-              <div className="text-danger">{formik.errors.username}</div>
-            )}
-            <MDBInput
+          <Form onFinish={formik.handleSubmit}>
+            <Form.Item
+              label="Никнейм"
               name="username"
-              value={formik.values.username}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.username && formik.errors.username}
-              wrapperClass='mb-4'
-              label='Никнейм'
-              id='formControlLg'
-              type='text'
-              size='lg'
-            />
-
-            {formik.touched.email && formik.errors.email && (
-              <div className="text-danger">{formik.errors.email}</div>
-            )}
-
-            <MDBInput
-              name="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && formik.errors.email}
-              wrapperClass='mb-4'
-              label='Почта'
-              id='formControlLg'
-              type='email'
-              size='lg'
-            />
-
-            {formik.touched.password && formik.errors.password && (
-              <div className="text-danger">{formik.errors.password}</div>
-            )}
-
-            <MDBInput
-              name="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && formik.errors.password}
-              wrapperClass='mb-4'
-              label='Пароль'
-              id='formControlLg'
-              type='password'
-              size='lg'
-            />
-
-            <MDBBtn
-              color='dark'
-              className='mb-4 w-100'
-              size='lg'
-              type='submit'
-              disabled={!formik.isValid || formik.isSubmitting}
+              hasFeedback
+              validateStatus={formik.touched.username && formik.errors.username ? 'error' : ''}
+              help={formik.touched.username && formik.errors.username}
             >
-              Регистрация
-            </MDBBtn>
-          </form>
-          <div className='divider d-dlex align-items-center my-4'>
-            <p className='text-center fw-bold mx-3 mb-0'>ИЛИ</p>
-          </div>
-          <MDBBtn href='http://localhost:7000/login/vkontakte' className='mb-4 w-100' size='lg'>
-            Войти с помощью ВКонтакте <i className='fab fa-vk'></i>
-          </MDBBtn>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+              <Input
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                size="large"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Почта"
+              name="email"
+              hasFeedback
+              validateStatus={formik.touched.email && formik.errors.email ? 'error' : ''}
+              help={formik.touched.email && formik.errors.email}
+            >
+              <Input
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                type="email"
+                size="large"
+              />
+            </Form.Item>
+
+            <Form.Item
+              label="Пароль"
+              name="password"
+              hasFeedback
+              validateStatus={formik.touched.password && formik.errors.password ? 'error' : ''}
+              help={formik.touched.password && formik.errors.password}
+            >
+              <Input.Password
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                size="large"
+              />
+            </Form.Item>
+
+            <Form.Item>
+              <Button
+                type="dark"
+                className="mb-4 w-100"
+                size="large"
+                htmlType="submit"
+                disabled={!formik.isValid || formik.isSubmitting}
+              >
+                Регистрация
+              </Button>
+            </Form.Item>
+          </Form>
+
+          <Button href="http://localhost:7000/login/vkontakte" className="mb-4 w-100" size="large">
+            Войти с помощью ВКонтакте <i className="fab fa-vk"></i>
+          </Button>
+        </Col>
+      </Row>
+    </div>
   );
 };
 
