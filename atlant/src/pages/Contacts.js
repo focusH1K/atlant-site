@@ -1,13 +1,11 @@
 import React from 'react';
-import { Card, Typography, Descriptions, Space } from 'antd';
+import { Card, Descriptions, Space } from 'antd';
 import { FaVk, FaTelegram, FaInstagram } from 'react-icons/fa';
-
-const { Title } = Typography;
 
 const Contacts = () => {
     return (
         <div>
-            <Title level={2}>Контакты</Title>
+            <h2 style={{ textAlign: "center", marginTop: "20px" }}>Наши контакты</h2>
             <Card style={{ width: '600px', margin: '20px auto' }}>
                 <Descriptions column={1} labelStyle={{ fontSize: '16px', fontWeight: 'bold' }}>
                     <Descriptions.Item label="Адрес">
@@ -17,8 +15,9 @@ const Contacts = () => {
                     <Descriptions.Item label="Email">zh.atlant@outlook.com</Descriptions.Item>
                 </Descriptions>
             </Card>
-            <div className='mt-5' style={{ width: '600px', margin: '20px auto' }}>
+            <div className='mt-4' style={{ width: '600px', margin: '20px auto' }}>
             <iframe 
+                title='Yandex Map'
                 src="https://yandex.ru/map-widget/v1/?um=constructor%3A1eb61458343310d587582bd2e26e1aa9131af277187782793e727e0fe0fc9884&amp;source=constructor" 
                 width="100%" 
                 height="400" 

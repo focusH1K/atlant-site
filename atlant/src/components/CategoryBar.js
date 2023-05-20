@@ -66,7 +66,6 @@ const CategoryBar = () => {
             await flatStore.createFlat(data);
             await flatStore.fetchFlats()
             setModalOpen(false);
-            console.log(name, description, area, price, selectedCategoryId, image);
     };
 
     const handleVerticalClick = async (category_id) => {
