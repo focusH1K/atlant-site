@@ -38,8 +38,8 @@ app.use(passport.session())
 passport.use(
     new VKontakteStrategy(
         {
-            clientID: '51644255',
-            clientSecret: '90Fk5H1BSGrpy5LJ67rw',
+            clientID: 'clientID',
+            clientSecret: 'clientSecret',
             callbackURL: 'http://localhost:7000/login/vkontakte/callback',
             scope: ['email'],
             profileFields: ['email']
